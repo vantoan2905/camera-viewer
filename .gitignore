@@ -1,0 +1,88 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+*.env
+
+# Conda environments
+*.conda
+*.yml
+*.yaml
+*.lock
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.out
+
+# Dataset and media
+
+/data
+/*.jpg
+/*.jpeg
+/*.png
+/*.bmp
+/*.mp4
+/*.avi
+/*.mov
+/*.mkv
+/*.webm
+/*.json
+/*.xml
+
+# YOLO/Roboflow exports
+runs/
+exp*/
+labels/
+data.yaml
+*.cache
+*.pt
+
+# Model weights
+*.h5
+*.ckpt
+*.pth
+*.pt
+*.onnx
+*.tflite
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+~*
+
+# Annotations
+annotations_cache/
+*.csv
+
+# Test outputs
+outputs/
+results/
+inference/
+
+# IPython history
+.history
+
+# MacOS and Linux trash
+.Trashes
