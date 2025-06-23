@@ -1,67 +1,89 @@
-# Object Detection & Tracking
+# Camera Viewer - Object Detection & Tracking
 
-## Overview
+A GUI application using PyQt5/PySide6 for camera viewing, real-time object detection, and tracking with AI models such as YOLO, Faster R-CNN, and DETR.
 
-This project provides a simple camera viewer and a YOLO-like object detection model implemented in PyTorch.  
-It includes:
-
-- **Camera Viewer**: View your webcam stream in real-time using Pygame and OpenCV.
-- **YOLO Clone**: A simplified YOLO-style neural network for object detection, written from scratch in PyTorch.
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-object_detect_tracking/
-│
-├── camera-viewer/
-│   └── src/
-│       └── main.py         # Camera viewer app (OpenCV + Pygame)
-│
-├── yolo_clone.py           # YOLO-like model implementation in PyTorch
-│
-└── README.md               # Project documentation
+camera-viewer/
+├── .env
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── run.py
+├── config/
+│   └── config.yaml
+├── resources/
+│   └── logo.png
+├── src/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── app.py
+│   ├── object_detection/
+│   │   ├── __init__.py
+│   │   ├── detector.py
+│   │   └── utils.py
+│   ├── model/
+│   │   ├── __init__.py
+│   │   ├── detr/
+│   │   │   └── detr_model.py
+│   │   ├── faster_rcnn/
+│   │   │   └── faster_rcnn_model.py
+│   │   └── yolo/
+│   │       ├── backbone.py
+│   │       ├── head.py
+│   │       ├── neck.py
+│   │       └── yolo_net.py
+│   └── ui/
+│       ├── __init__.py
+│       ├── main_window.py
+│       ├── main_window.ui
+│       └── widgets/
+│           ├── __init__.py
+│           ├── video_viewer.py
+│           └── result_panel.py
+└── tests/
+    ├── test_detector.py
+    └── test_utils.py
 ```
 
-## Requirements
+## 🚀 How to Run
 
-- Python 3.8+
-- OpenCV (`opencv-python`)
-- Pygame
-- PyTorch
+1. **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Install dependencies with:
+2. **Configuration:**  
+   Edit parameters in `config/config.yaml` (model paths, GUI settings, etc.).
 
-```bash
-pip install opencv-python pygame torch
-```
+3. **Run the application:**
+    ```bash
+    python run.py
+    ```
 
-## Usage
+## 🧩 Main Components
 
-### Camera Viewer
+- **src/main.py**: Initialize and run the GUI.
+- **src/app.py**: Application logic controller.
+- **src/object_detection/**: AI processing and object detection.
+- **src/model/**: AI models (YOLO, Faster R-CNN, DETR).
+- **src/ui/**: User interface (PyQt5/PySide6).
+- **resources/**: Images, icons, fonts for the GUI.
+- **tests/**: Unit tests for main components.
 
-Run the camera viewer:
+## 🛠️ Technologies Used
 
-```bash
-python camera-viewer/src/main.py
-```
+- Python 3.x
+- PyQt5 or PySide6
+- OpenCV
+- Torch/TensorFlow (depending on model)
+- AI libraries: YOLO, Faster R-CNN, DETR
 
-- Press `q` or close the window to exit.
+## 📄 License
 
-### YOLO Clone
+MIT License
 
-Run the YOLO clone demo:
+---
 
-```bash
-python yolo_clone.py
-```
-
-- This will create a dummy input and print the shapes of feature maps and predictions.
-
-## Notes
-
-- The YOLO clone is a simplified educational version, not suitable for production.
-- To use your own data or train the model, you will need to implement data loading, training, and post-processing steps.
-
-## License
-
-This project is for educational purposes and is licensed under the MIT License - see the LICENSE file for details.
+*For contributions, bug reports, or suggestions, please create an issue or pull request!*
