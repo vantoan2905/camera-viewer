@@ -1,32 +1,54 @@
-from model.yolo.yolo_net import YOLONet
 import torch
+from model.yolo.yolo_net import TrainingYOLONet  # hoặc đúng đường dẫn
+from custom_dataset.load_data import LoadDataset
+import os
+from torchvision import transforms
 
 
 
 
-if __name__ == "__main__":
 
 
-    num_classes = 80 
-    num_anchors = 3  # Example: 3 anchors, adjust as needed
-    
-    model = YOLONet(num_classes=num_classes, num_anchors=num_anchors)
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-    criterion = torch.nn.CrossEntropyLoss()  # Example loss function, adjust as needed
-    
-    # Dummy data for training
-    dummy_input = torch.randn(1, 3, 416, 416)  # Batch size of 1, 3 channels, 416x416 image
-    dummy_target = torch.randn(1, num_anchors * (4 + 1 + num_classes), 13, 13)  # Example target tensor
-    
-    # Training loop
-    model.train()
-    for epoch in range(10):  # Example: 10 epochs
-        optimizer.zero_grad()
-        outputs = model(dummy_input)
-        loss = criterion(outputs, dummy_target)
-        loss.backward()
-        optimizer.step()
-        print(f"Epoch [{epoch+1}/10], Loss: {loss.item():.4f}")
-    print("Training completed successfully!")
-    
-    # Note: This is a simplified example. In practice, you would use a proper dataset, data loaders, and more sophisticated training logic.
+
+
+
+
+
+
+path_df = r"D:\object_detect_tracking\camera-viewer\data\brain_tumor_copy"
+
+axial_path = os.path.join(path_df, "axial_t1wce_2_class")
+train_axial_path_image = os.path.join(axial_path, "images", "train")
+train_axial_path_label = os.path.join(axial_path, "labels", "train")
+test_axial_path_image = os.path.join(axial_path, "images", "test")
+test_axial_path_label = os.path.join(axial_path, "labels", "test")
+
+
+
+transform = transforms.Compose([
+    transforms.Resize((416, 416)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+])
+train_dataset = LoadDataset(train_axial_path_image, train_axial_path_label, transform=transform)
+test_dataset = LoadDataset(test_axial_path_image, test_axial_path_label, transform=transform)
+
+
+# show size of dataset
+print("Size of train dataset:", len(train_dataset))
+print("Size of test dataset:", len(test_dataset))
+
+
+
+
+# ---------------------------------------------------------------------------
+# Initialize the YOLO model
+# ---------------------------------------------------------------------------
+
+model = TrainingYOLONet(num_classes=20, num_anchors=3)
+
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+criterion = torch.nn.CrossEntropyLoss()
+
+
+print(model)
