@@ -1,11 +1,8 @@
 import torch
-from model.yolo.yolo_net import TrainingYOLONet  # hoặc đúng đường dẫn
+from model.yolo.yolo_net import YOLONet  # hoặc đúng đường dẫn
 from custom_dataset.load_data import LoadDataset
 import os
 from torchvision import transforms
-
-
-
 
 
 
@@ -38,17 +35,19 @@ test_dataset = LoadDataset(test_axial_path_image, test_axial_path_label, transfo
 print("Size of train dataset:", len(train_dataset))
 print("Size of test dataset:", len(test_dataset))
 
-
+# show shape of dataset
+print("Shape of train dataset:", train_dataset[0][0].shape)
+print("Shape of test dataset:", test_dataset[0][0].shape)
 
 
 # ---------------------------------------------------------------------------
 # Initialize the YOLO model
 # ---------------------------------------------------------------------------
 
-model = TrainingYOLONet(num_classes=20, num_anchors=3)
+model = YOLONet(num_classes=20, num_anchors=3)
 
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 criterion = torch.nn.CrossEntropyLoss()
 
 
-print(model)
+# print(model)

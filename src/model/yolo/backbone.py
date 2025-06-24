@@ -12,9 +12,9 @@ class ResNetBackbone(nn.Module):
         self.stage3 = resnet.layer3
         self.stage4 = resnet.layer4
 
-        self.output_52x52_channels = 256  # giả sử lấy từ stage1
-        self.output_26x26_channels = 512  # từ stage2
-        self.output_13x13_channels = 1024  # từ stage3
+        self.output_52x52_channels = 256  # from stage1
+        self.output_26x26_channels = 512  # from stage2
+        self.output_13x13_channels = 1024  # from stage3
 
     def forward(self, x):
         c1 = self.stage1(x)   # ~52x52

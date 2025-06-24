@@ -7,11 +7,11 @@ from model.yolo.neck import FPN
 from model.yolo.head import DetectionHead
 import torch
 # ---------------------------------------------------------------------------
-# MODEL: TrainingYOLONet
+# MODEL: YOLONet
 # ---------------------------------------------------------------------------
-class TrainingYOLONet(nn.Module):
+class YOLONet(nn.Module):
     def __init__(self, num_classes=2, num_anchors=3):
-        super(TrainingYOLONet, self).__init__()
+        super(YOLONet, self).__init__()
 
         self.backbone = ResNetBackbone()
         self.neck = FPN(
