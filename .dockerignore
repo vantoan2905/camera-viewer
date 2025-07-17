@@ -1,0 +1,35 @@
+#  version control
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database & model files
+*.sqlite3
+*.db
+*.h5
+*.pt
+*.pth
+
+# MacOS system file
+.DS_Store
+
+# Output, logs, checkpoints
+runs/
+checkpoints/
+logs/
+outputs/
+weights/
+
+# Dữ liệu local (nếu không cần build kèm)
+data/
+datasets/
+resources/
+
+# Env files
+.env
+*.env
