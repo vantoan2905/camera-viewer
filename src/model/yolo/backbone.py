@@ -1,12 +1,12 @@
 from torch import nn
 
 
-from torchvision.models import resnet50
+from torchvision.models import resnet50, ResNet50_Weights
 
 class ResNetBackbone(nn.Module):
     def __init__(self):
         super(ResNetBackbone, self).__init__()
-        resnet = resnet50(pretrained=True)
+        resnet = resnet50(weights=ResNet50_Weights.DEFAULT)
         self.stage1 = nn.Sequential(resnet.conv1, resnet.bn1, resnet.relu, resnet.maxpool, resnet.layer1)
         self.stage2 = resnet.layer2
         self.stage3 = resnet.layer3
